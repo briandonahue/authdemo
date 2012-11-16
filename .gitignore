@@ -3,7 +3,7 @@ bin
 obj
 _Resharper*
 *.suo
-
+.sass-cache
 
 # mstest test results
 TestResults
