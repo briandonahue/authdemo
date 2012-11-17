@@ -4,9 +4,12 @@
 <html>
     <head>
         <title>@(ViewBag.Title)</title>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/bootstrap")
         @Styles.Render("~/Content/bootstrap")
         @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/bootstrap")
     </head>
     <body>
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -28,6 +31,14 @@
                             </li>
                             <li class="">
                                 <a href="#">Contact</a>
+                            </li>
+                        </ul>
+                        <ul class="nav pull-right">
+                            <li>
+                                <a href="@Url.Action("Register", "Account")">Register</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Login", "Account")">Log In</a>
                             </li>
                         </ul>
                     </div>

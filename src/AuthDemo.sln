@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutOfTheBox.Web", "OutOfThe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OhSoSecure.Web", "OhSoSecure.Web\OhSoSecure.Web.csproj", "{4188AD1B-2F44-4499-A402-FDA655989F0B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OhSoSecure.Core", "OhSoSecure.Core\OhSoSecure.Core.csproj", "{639928CD-BEB2-409A-BF29-6CB620A34337}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{4188AD1B-2F44-4499-A402-FDA655989F0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4188AD1B-2F44-4499-A402-FDA655989F0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4188AD1B-2F44-4499-A402-FDA655989F0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{639928CD-BEB2-409A-BF29-6CB620A34337}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{639928CD-BEB2-409A-BF29-6CB620A34337}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{639928CD-BEB2-409A-BF29-6CB620A34337}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{639928CD-BEB2-409A-BF29-6CB620A34337}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
