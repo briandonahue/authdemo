@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Iesi.Collections.Generic;
 using OhSoSecure.Core.Security;
 
@@ -28,5 +29,10 @@ namespace OhSoSecure.Core.Domain
         }
 
         public virtual HashedPassword Password { get; protected set; }
+
+        public virtual void AssignRole(Role role)
+        {
+            roles.Add(role);
+        }
     }
 }

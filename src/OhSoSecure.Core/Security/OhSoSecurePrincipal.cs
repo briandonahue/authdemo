@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
+using OhSoSecure.Core.Domain;
 
 namespace OhSoSecure.Core.Security
 {
@@ -15,6 +16,12 @@ namespace OhSoSecure.Core.Security
         {
             Name = name;
             Roles = roles;
+        }
+
+        public OhSoSecurePrincipal(User user)
+        {
+            Name = user.FirstName;
+            Roles = user.Roles.Select(r => r.Name);
         }
 
         public bool IsInRole(string role)

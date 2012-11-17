@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Security;
+using OhSoSecure.Core.DataAccess;
 using OhSoSecure.Core.Domain;
 
 namespace OhSoSecure.Core.Security
@@ -21,13 +22,16 @@ namespace OhSoSecure.Core.Security
             if (user != null && user.Password.Matches(password))
             {
                 var jsonSerializer = new JavaScriptSerializer();
+                var principal = user.ToOhSoSecurePrincipal();
+
                 var ticket = new FormsAuthenticationTicket(1, userName, DateTime.Now, DateTime.Now.AddHours(4),
                                                            false,
                                                            jsonSerializer.Serialize(
+                                                           // Anonymous object to avoid serialization loop
                                                                new
                                                                    {
-                                                                       Name = user.FirstName,
-                                                                       user.Roles,
+                                                                       principal.Name,
+                                                                       principal.Roles,
                                                                    }));
 
                 HttpContext.Current.Response.Cookies.Set(new HttpCookie(FormsAuthentication.FormsCookieName,
@@ -39,9 +43,7 @@ namespace OhSoSecure.Core.Security
 
         public User CreateUser(string userName, string password, string firstName, string lastName)
         {
-            var user = new User(userName, password, firstName, lastName);
-            userRepo.Save(user);
-            return user;
+            return userRepo.CreateUser(userName, password, firstName, lastName);
         }
 
         public string GetLoginUrlFor(string userName)
