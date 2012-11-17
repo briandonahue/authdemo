@@ -34,12 +34,27 @@
                             </li>
                         </ul>
                         <ul class="nav pull-right">
-                            <li>
-                                <a href="@Url.Action("Register", "Account")">Register</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("Login", "Account")">Log In</a>
-                            </li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li>
+                                    Hello, @User.Identity.Name!
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Profile", "Account")">Profile</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Logout", "Account")">Log Out</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="@Url.Action("Register", "Account")">Register</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Login", "Account")">Log In</a>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </div>

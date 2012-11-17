@@ -20,18 +20,7 @@ namespace OhSoSecure.Core.Security
             var user = userRepo.FindByUserName(userName);
             if (user != null && user.Password.Matches(password))
             {
-                var jsonSerializer = new JavaScriptSerializer();
-                var ticket = new FormsAuthenticationTicket(1, userName, DateTime.Now, DateTime.Now.AddHours(4),
-                                                           false,
-                                                           jsonSerializer.Serialize(
-                                                               new
-                                                                   {
-                                                                       Name = user.FirstName,
-                                                                       user.Roles,
-                                                                   }));
-
-                HttpContext.Current.Response.Cookies.Set(new HttpCookie(FormsAuthentication.FormsCookieName,
-                                                                        FormsAuthentication.Encrypt(ticket)));
+                FormsAuthentication.SetAuthCookie(userName, false);
                 return true;
             }
             return false;
@@ -47,6 +36,11 @@ namespace OhSoSecure.Core.Security
         public string GetLoginUrlFor(string userName)
         {
             return FormsAuthentication.GetRedirectUrl(userName, false);
+        }
+
+        public void Logout()
+        {
+            FormsAuthentication.SignOut();
         }
     }
 }

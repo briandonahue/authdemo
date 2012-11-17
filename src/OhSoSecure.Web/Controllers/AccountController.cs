@@ -36,7 +36,8 @@ namespace OhSoSecure.Web.Controllers
 
         public ActionResult Logout()
         {
-            throw new NotImplementedException();
+            authService.Logout();
+            return RedirectToAction("Index", "Home");
         }
 
         [AllowAnonymous]
@@ -59,6 +60,11 @@ namespace OhSoSecure.Web.Controllers
                 return Redirect(authService.GetLoginUrlFor(model.UserName));
             }
             return View(model);
+        }
+
+        public ActionResult Profile()
+        {
+            throw new NotImplementedException();
         }
     }
 }

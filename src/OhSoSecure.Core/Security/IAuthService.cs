@@ -7,5 +7,6 @@ namespace OhSoSecure.Core.Security
         bool Authenticate(string userName, string password);
         User CreateUser(string userName, string password, string firstName, string lastName);
         string GetLoginUrlFor(string userName);
+        void Logout();
     }
 }
