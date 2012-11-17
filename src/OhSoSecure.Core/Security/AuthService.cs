@@ -20,7 +20,18 @@ namespace OhSoSecure.Core.Security
             var user = userRepo.FindByUserName(userName);
             if (user != null && user.Password.Matches(password))
             {
-                FormsAuthentication.SetAuthCookie(userName, false);
+                var jsonSerializer = new JavaScriptSerializer();
+                var ticket = new FormsAuthenticationTicket(1, userName, DateTime.Now, DateTime.Now.AddHours(4),
+                                                           false,
+                                                           jsonSerializer.Serialize(
+                                                               new
+                                                                   {
+                                                                       Name = user.FirstName,
+                                                                       user.Roles,
+                                                                   }));
+
+                HttpContext.Current.Response.Cookies.Set(new HttpCookie(FormsAuthentication.FormsCookieName,
+                                                                        FormsAuthentication.Encrypt(ticket)));
                 return true;
             }
             return false;
