@@ -1,4 +1,5 @@
 ﻿@using System.Web.Optimization
+@using OhSoSecure.Core.Security
 <!DOCTYPE html>
 
 <html>
@@ -38,6 +39,15 @@
                             {
                                 <li>
                                     Hello, @User.Identity.Name!
+                                </li>
+                                if (User.IsInRole(AuthRole.Admin)) {
+                                <li>
+                                    <a href="#">Admin All Teh Things!</a>
+                                </li>
+                                }
+
+                                <li>
+                                    <a href="@Url.Action("Profile", "Account")">Profile</a>
                                 </li>
                                 <li>
                                     <a href="@Url.Action("Profile", "Account")">Profile</a>

@@ -8,7 +8,7 @@ namespace OhSoSecure.Core.DataAccess.EntityMaps
 
         public RoleMap() {
             Id(x => x.Id);
-            Id(x => x.Name);
+            Map(x => x.Name);
         }
     }
 }
