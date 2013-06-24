@@ -31,7 +31,7 @@ namespace OhSoSecure.Core.Security
             return PasswordHash == hashAttempt;
         }
 
-        string CreateHash(string password, string salt)
+        static string CreateHash(string password, string salt)
         {
             var passwordBytes = Encoding.UTF8.GetBytes(password);
             var saltBytes = Convert.FromBase64String(salt);
@@ -42,7 +42,7 @@ namespace OhSoSecure.Core.Security
             }
         }
 
-        string CreateSalt()
+        static string CreateSalt()
         {
             var saltBytes = new byte[32];
             using (var provider = RandomNumberGenerator.Create())
