@@ -27,12 +27,8 @@ namespace OhSoSecure.Core.Security
                 var ticket = new FormsAuthenticationTicket(1, userName, DateTime.Now, DateTime.Now.AddHours(4),
                                                            false,
                                                            jsonSerializer.Serialize(
-                                                           // Anonymous object to avoid serialization loop
-                                                               new
-                                                                   {
-                                                                       principal.Name,
-                                                                       principal.Roles,
-                                                                   }));
+                                                           // Don't forget attribute to ignore IIdentity in custom principal
+                                                           principal));
 
                 HttpContext.Current.Response.Cookies.Set(new HttpCookie(FormsAuthentication.FormsCookieName,
                                                                         FormsAuthentication.Encrypt(ticket)));
