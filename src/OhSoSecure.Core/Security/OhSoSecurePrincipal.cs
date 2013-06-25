@@ -6,10 +6,24 @@ using OhSoSecure.Core.Domain;
 
 namespace OhSoSecure.Core.Security
 {
-    public class OhSoSecurePrincipal : IPrincipal
+    public interface IOhSoSecurePrincipal : IPrincipal
+    {
+        string FirstName { get; set; }
+        IEnumerable<string> Roles { get; set; }
+        string UserName { get; set; }
+        bool IsAuthenticated { get; }
+    }
+
+    public class OhSoSecurePrincipal : IOhSoSecurePrincipal
     {
         public OhSoSecurePrincipal()
         {
+            UserName = string.Empty;
+        }
+
+        public OhSoSecurePrincipal(IIdentity identity)
+        {
+            UserName = identity.Name;
         }
 
         public OhSoSecurePrincipal(User user)
@@ -33,5 +47,14 @@ namespace OhSoSecure.Core.Security
         {
             get { return new GenericIdentity(UserName); }
         }
+
+        public bool IsAuthenticated
+        {
+            get
+            {
+                return Identity.IsAuthenticated;
+            }
+        }
     }
+
 }

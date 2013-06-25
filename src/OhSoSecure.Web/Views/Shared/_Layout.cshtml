@@ -1,5 +1,4 @@
 ﻿@using System.Web.Optimization
-@using OhSoSecure.Core.Security
 <!DOCTYPE html>
 
 <html>
@@ -35,16 +34,11 @@
                             </li>
                         </ul>
                         <ul class="nav pull-right">
-                            @if (User.Identity.IsAuthenticated)
+                            @if (User.IsAuthenticated)
                             {
                                 <li>
-                                    Hello, @User.Identity.Name!
+                                    Hello, @User.FirstName
                                 </li>
-                                if (User.IsInRole(AuthRole.Admin)) {
-                                <li>
-                                    <a href="#">Admin All Teh Things!</a>
-                                </li>
-                                }
                                 <li>
                                     <a href="@Url.Action("Profile", "Account")">Profile</a>
                                 </li>
