@@ -1,17 +1,23 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
+using NHibernate;
+using NHibernate.Linq;
+using OhSoSecure.Core.Domain;
 using OhSoSecure.Core.Security;
 using OhSoSecure.Web.Models;
 
 namespace OhSoSecure.Web.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : OhSoSecureController
     {
         readonly IAuthService authService;
+        readonly ISession session;
 
-        public AccountController(IAuthService authService)
+        public AccountController(IAuthService authService, ISession session)
         {
             this.authService = authService;
+            this.session = session;
         }
 
         [AllowAnonymous]
@@ -62,9 +68,20 @@ namespace OhSoSecure.Web.Controllers
             return View(model);
         }
 
-        public ActionResult Profile()
+
+        public ActionResult UserProfile()
         {
-            throw new NotImplementedException();
+            var user = session.Query<User>().First(u => u.UserName == User.UserName);
+            var profileModel = new ProfileModel
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    UserName = user.UserName
+                };
+
+
+
+            return View(profileModel);
         }
     }
 }

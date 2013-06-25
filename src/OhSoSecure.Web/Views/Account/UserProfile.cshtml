@@ -1,0 +1,24 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<div class="container" style="margin-top: 60px;">
+    <div class="row">
+
+        @using (Html.BeginForm(Url.GetCurrentAction(), Url.GetCurrentController(), FormMethod.Post, new {@class = "form-horizontal"}))
+        {
+            <fieldset>
+                @Html.EditorForModel()
+                <div class="span4">
+                    <div class="pull-right">
+                        <input type="submit" class="btn-primary" value="Save"/>
+                    </div>
+                </div>
+            </fieldset>
+        }
+    </div>
+
+</div>

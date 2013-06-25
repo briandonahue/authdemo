@@ -77,6 +77,7 @@
     <Compile Include="Security\IAuthService.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Security\OhSoSecurePrincipal.cs" />
+    <Compile Include="Web\MvcExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
