@@ -78,6 +78,7 @@
     <Compile Include="Domain\User.cs" />
     <Compile Include="Security\OhSoSecurePrincipal.cs" />
     <Compile Include="Web\MvcExtensions.cs" />
+    <Compile Include="Web\StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,0 +1,25 @@
+﻿@if (ViewData.ModelMetadata.HideSurroundingHtml)
+{
+    @RenderBody()
+}
+else
+{
+    if (IsSectionDefined("Label"))
+    {
+        @RenderSection("Label")
+    }
+    else
+    {
+        <label class="control-label" for="@ViewData.ModelMetadata.PropertyName">
+            @if (ViewData.ModelMetadata.IsRequired) {<span class="required">* </span> }
+            <strong>@ViewData.ModelMetadata.DisplayName:</strong> </label>
+    }
+    @RenderBody()
+    @RenderSection("Validation", false);
+
+    if (!string.IsNullOrEmpty(ViewData.ModelMetadata.Description))
+    {
+        <span class="inline-help">@ViewData.ModelMetadata.Description </span>
+    }
+}
+

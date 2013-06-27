@@ -1,0 +1,11 @@
+﻿@{ Layout = "_EditorLayout.cshtml"; }
+
+@if (!ViewData.ModelMetadata.IsReadOnly)
+{
+    @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, new Dictionary<string, object> {{"class", "text-box single-line"}})
+}
+else
+{
+    @Html.DisplayFor(m => m)
+    @ViewData.Model
+}

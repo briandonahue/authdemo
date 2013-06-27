@@ -10,6 +10,7 @@ using System.Web.Script.Serialization;
 using System.Web.Security;
 using OhSoSecure.Core.Security;
 using OhSoSecure.Web.App_Start;
+using OhSoSecure.Web.Helpers;
 
 namespace OhSoSecure.Web
 {
@@ -28,6 +29,7 @@ namespace OhSoSecure.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             StructureMapConfig.Configure();
+            ModelMetadataProviders.Current = new ConventionModelMetaDataProvider();
         }
 
         protected void Application_OnPostAuthenticateRequest()
